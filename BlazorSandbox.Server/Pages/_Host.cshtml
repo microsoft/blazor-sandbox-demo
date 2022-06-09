@@ -1,0 +1,8 @@
+﻿@page "/"
+@namespace BlazorSandbox.Server.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+
+<component type="typeof(BlazorSandbox.Common.Main)" render-mode="ServerPrerendered" />
