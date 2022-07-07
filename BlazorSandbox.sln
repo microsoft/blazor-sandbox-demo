@@ -8,7 +8,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSandbox.Common", "Bla
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSandbox.Server", "BlazorSandbox.Server\BlazorSandbox.Server.csproj", "{733BCD42-23F2-4C01-9928-67A9BAA67708}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorSandbox.Data", "BlazorSandbox.Data\BlazorSandbox.Data.csproj", "{7FA1849A-E4E2-4229-9D36-1FF1AD9E38A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSandbox.Data", "BlazorSandbox.Data\BlazorSandbox.Data.csproj", "{7FA1849A-E4E2-4229-9D36-1FF1AD9E38A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5C2BF6EA-E852-4C4E-8D6F-ADCC8DADCAD8}"
+	ProjectSection(SolutionItems) = preProject
+		Links.md = Links.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

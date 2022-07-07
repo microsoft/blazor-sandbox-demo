@@ -9,59 +9,10 @@ Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
 
-@if (characters != null)
-{
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Character</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach (var character in characters)
-			{
-				<tr>
-					<td>
-						<b>@character.Name</b> is a
-						<b>@character.Race</b> from
-						<b>@character.HomePlanet</b>
-					</td>
-				</tr>
-			}
-		</tbody>
-	</table>
-	<button @onclick="WriteTextFile">Write To Text File</button>
-}
+<button @onclick="WriteTextFile">Write To Text File</button>
 
 @code
 {
-	[Inject]
-	public SpaceOperaDbContext db { get; set; }
-
-	private IEnumerable<CharacterListView> characters { get; set; } = new List<CharacterListView>();
-
-	protected async override Task OnInitializedAsync()
-	{
-		try
-		{
-			//characters = await db.Characters
-			//	.Include(c => c.HomePlanet)
-			//	.Include(c => c.Race)
-			//	.AsSplitQuery()
-			//	.AsNoTrackingWithIdentityResolution()
-			//	.ToListAsync();
-
-			characters = await db.Characters
-				.Select(c => new CharacterListView { Name = c.Name, HomePlanet = c.HomePlanet != null ? c.HomePlanet.Name : "", Race = c.Race != null ? c.Race.Name : "" })
-				.ToListAsync();
-		}
-		catch (Exception x)
-		{
-			Console.WriteLine(x.Message);
-			throw;
-		}
-	}
-
 	private async Task WriteTextFile()
 	{
 		await System.IO.File.WriteAllTextAsync("c:\\src\\test.txt", "blah blah");

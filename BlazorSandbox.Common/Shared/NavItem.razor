@@ -1,0 +1,16 @@
+﻿<div class="nav-item px-3">
+	<NavLink class="nav-link" href="@Page">
+		<span class="oi oi-@Icon" aria-hidden="true"></span> @Name
+	</NavLink>
+</div>
+
+@code {
+	[Parameter]
+	public string? Page { get; set; }
+
+	[Parameter]
+	public string? Name { get; set; }
+
+	[Parameter]
+	public string? Icon { get; set; }
+}
