@@ -1,0 +1,20 @@
+﻿@page "/"
+@using BlazorSandbox.Common.Data
+@using BlazorSandbox.Common.Models
+@using Microsoft.EntityFrameworkCore
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+<button @onclick="WriteTextFile">Write To Text File</button>
+
+@code
+{
+	private async Task WriteTextFile()
+	{
+		await System.IO.File.WriteAllTextAsync("c:\\src\\test.txt", "blah blah");
+	}
+}

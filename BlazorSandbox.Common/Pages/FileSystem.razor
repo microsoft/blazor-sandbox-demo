@@ -1,0 +1,40 @@
+﻿@page "/filesystem"
+
+<h1>File System</h1>
+
+This page demonstrates reading and writing data from the file system.
+<br />
+<textarea id="MyTextArea" name="MyTextArea" @bind="trackedText" />
+<br />
+You can change the name of the local file to read from / write to:
+<input @bind="fileName" />
+<br />
+<button @onclick="WriteTextFile">Write To Text File</button>
+<br />
+@message
+
+@code
+{
+	private string fileName = "c:\\src\\test.txt";
+	private string trackedText = "not loaded";
+	private string message = "";
+
+	protected async override Task OnInitializedAsync()
+	{
+		await LoadTextFromFile();
+	}
+
+	private async Task LoadTextFromFile()
+	{
+		message = "";
+		trackedText = await System.IO.File.ReadAllTextAsync(fileName);
+		message = $"Text loaded from file: {fileName}";
+	}
+
+	private async Task WriteTextFile()
+	{
+		message = "";
+		await System.IO.File.WriteAllTextAsync(fileName, trackedText);
+		message = $"Text saved to file: {fileName}";
+	}
+}

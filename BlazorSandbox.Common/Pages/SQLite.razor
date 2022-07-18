@@ -1,0 +1,63 @@
+﻿@page "/sqlite"
+@using BlazorSandbox.Common.Data
+@using BlazorSandbox.Common.Models
+@using Microsoft.EntityFrameworkCore
+
+<h1>SQLite</h1>
+
+This page demonstrates using Entity Framework Core to access data from a SQLite database and display it to the screen.
+<br />
+The MAUI app also automatically updates the SQLite database with any model changes when the application starts.
+
+@if (characters != null)
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th>List of Star Wars Characters</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var character in characters)
+			{
+				<tr>
+					<td>
+						<b>@character.Name</b> is a
+						<b>@character.Race</b> from
+						<b>@character.HomePlanet</b>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+
+@code
+{
+	[Inject]
+	public SpaceOperaDbContext db { get; set; }
+
+	private IEnumerable<CharacterListView> characters { get; set; } = new List<CharacterListView>();
+
+	protected async override Task OnInitializedAsync()
+	{
+		try
+		{
+			//characters = await db.Characters
+			//	.Include(c => c.HomePlanet)
+			//	.Include(c => c.Race)
+			//	.AsSplitQuery()
+			//	.AsNoTrackingWithIdentityResolution()
+			//	.ToListAsync();
+
+			characters = await db.Characters
+				.Select(c => new CharacterListView { Name = c.Name, HomePlanet = c.HomePlanet != null ? c.HomePlanet.Name : "", Race = c.Race != null ? c.Race.Name : "" })
+				.ToListAsync();
+		}
+		catch (Exception x)
+		{
+			Console.WriteLine(x.Message);
+			throw;
+		}
+	}
+}

@@ -1,3 +1,8 @@
-# Repository setup required :wave:
-      
-Please visit the website URL :point_right: for this repository to complete the setup of this repository and configure access controls.
+# Blazor Sandbox Demo
+
+A simple demo that includes:
+
+- Multiple hosting options: Blazor Hybrid(MAUI) and Blazor Sandbox, using a Shared RCL
+- Demonstration of using EF Core + SQL Lite - including runtime database migration
+- Demonstration of executing unmanaged code from Blazor Hybrid
+- Other Scenarios

@@ -1,0 +1,49 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="">BlazorSandbox.Maui</a>
+		<button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	</div>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+	<nav class="flex-column">
+		<div class="nav-item px-3">
+			<NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+				<span class="oi oi-home" aria-hidden="true"></span> Home
+			</NavLink>
+		</div>
+		<NavItem Page="filesystem" Name="File System" Icon="folder" />
+		<NavItem Page="sqlite" Name="SQLite" Icon="phone" />
+		<NavItem Page="standard" Name=".NET Standard" Icon="code" />
+		<NavItem Page="unmanaged" Name="Unmanaged C++ Code" Icon="puzzle-piece" />
+		@{
+			void RenderNav(string page, string name, string icon)
+			{
+				<div class="nav-item px-3">
+					<NavLink class="nav-link" href="@(page)">
+						<span class="oi oi-@icon" aria-hidden="true"></span> @name
+					</NavLink>
+				</div>
+			}
+
+			RenderNav("usb", "USB Device", "transfer");
+			RenderNav("backgroundthreads", "Background Threads", "terminal");
+			RenderNav("import", "Import", "data-transfer-upload");
+			RenderNav("export", "Export", "data-transfer-download");
+			RenderNav("fetchdata", "Fetch data", "list-rich");
+		}
+	</nav>
+</div>
+
+@code {
+	private bool collapseNavMenu = true;
+
+	private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+	private void ToggleNavMenu()
+	{
+		collapseNavMenu = !collapseNavMenu;
+	}
+}
